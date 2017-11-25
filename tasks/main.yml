@@ -1,0 +1,27 @@
+---
+- name: Ensure that the irssi package is installed
+  tags: irssi
+  homebrew:
+    name: irssi
+    state: present
+  register: irssi_homebrew
+
+- block:
+    - name: Create configuration directory
+      file:
+        path: "{{ irssi_config_dir }}"
+        owner: "{{ irssi_config_owner }}"
+        group: "{{ irssi_config_group }}"
+        state: directory
+        mode: 0700
+
+    - name: Applying irssi configurations
+      template:
+        src: config.j2
+        dest: "{{ irssi_config_file }}"
+        owner: "{{ irssi_config_owner }}"
+        group: "{{ irssi_config_group }}"
+        mode: 0600
+  tags: irssi
+  when: irssi_homebrew|success
+...

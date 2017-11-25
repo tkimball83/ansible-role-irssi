@@ -1,0 +1,17 @@
+---
+dependencies:
+  - geerlingguy.homebrew
+galaxy_info:
+  author: tkimball83
+  description: macOS - Your text mode chatting application since 1999
+  license: BSD
+  min_ansible_version: 2.4
+  platforms:
+    - name: MacOSX
+      versions:
+        - all
+  galaxy_tags:
+    - irssi
+    - macos
+    - osx
+...
