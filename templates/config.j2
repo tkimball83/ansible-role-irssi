@@ -17,9 +17,17 @@ chatnets = {
 {%   for c in irssi_chatnets.keys()|sort %}
 {%     if irssi_chatnets[c].type is defined %}
   {{ c }} = {
+    autosendcmd = "{{ irssi_chatnets[c].autosendcmd if irssi_chatnets[c].autosendcmd is defined else '' }}";
+    cmdmax = "{{ irssi_chatnets[c].cmdmax if irssi_chatnets[c].cmdmax is defined else '5' }}";
+    cmdspeed = "{{ irssi_chatnets[c].cmdspeed if irssi_chatnets[c].cmdspeed is defined else '2200msec' }}";
+    host = "{{ irssi_chatnets[c].host if irssi_chatnets[c].host is defined else '' }}";
     max_kicks = "{{ irssi_chatnets[c].max_kicks if irssi_chatnets[c].max_kicks is defined else '1' }}";
+    max_modes = "{{ irssi_chatnets[c].max_modes if irssi_chatnets[c].max_modes is defined else '3' }}";
     max_msgs = "{{ irssi_chatnets[c].max_msgs if irssi_chatnets[c].max_msgs is defined else '1' }}";
-    max_whois = "{{ irssi_chatnets[c].max_whois if irssi_chatnets[c].max_whois is defined else '1' }}";
+    max_whois = "{{ irssi_chatnets[c].max_whois if irssi_chatnets[c].max_whois is defined else '4' }}";
+    nick = "{{ irssi_chatnets[c].nick if irssi_chatnets[c].nick is defined else irssi_settings.core.nick }}";
+    realname = "{{ irssi_chatnets[c].realname if irssi_chatnets[c].realname is defined else irssi_settings.core.real_name }}";
+    username = "{{ irssi_chatnets[c].username if irssi_chatnets[c].username is defined else irssi_settings.core.user_name }}";
     type = "{{ irssi_chatnets[c].type }}";
   };
 {%     endif %}
