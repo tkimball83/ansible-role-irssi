@@ -31,9 +31,9 @@ chatnets = {
 ignores = (
 {%   for i in irssi_ignores|sort %}
 {%     if i.level is defined %}
-{%     set exception = 'yes' if i.exception is defined and i.exception else 'no' %}
-{%     set level = i.level|join(' ') %}
-{%     set mask = i.mask|join(',') if i.mask is defined else '*' %}
+{%      set exception = 'yes' if i.exception is defined and i.exception else 'no' %}
+{%      set level = i.level|join(' ') %}
+{%      set mask = i.mask|join(',') if i.mask is defined else '*' %}
   { exception = "{{ exception }}"; level = "{{ level }}"; mask = "{{ mask }}"; }{% if not loop.last %},{% endif %}
 
 {%     endif %}
