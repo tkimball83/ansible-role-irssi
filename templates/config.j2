@@ -74,4 +74,7 @@ settings = {
     user_name = "{{ irssi_settings.core.user_name }}";
   };
   "fe-text" = { actlist_sort = "refnum"; };
+{% if irssi_theme is defined %}
+  "fe-common/core" = { theme = "{{ irssi_theme|basename|splitext[0] }}"; };
+{% endif %}
 };

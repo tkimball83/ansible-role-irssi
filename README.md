@@ -38,6 +38,10 @@ Available variables are listed below, along with default values:
         real_name: "{{ ansible_user_gecos }}"
         user_name: "{{ ansible_user_id }}"
 
+Additional variables not defined by default:
+
+    irssi_theme: http://irssi-import.github.io/themes/initrd.theme
+
 ## Dependencies
 
   * https://galaxy.ansible.com/geerlingguy/homebrew

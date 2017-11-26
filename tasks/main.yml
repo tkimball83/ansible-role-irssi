@@ -15,6 +15,15 @@
         state: directory
         mode: 0700
 
+    - name: Attempting to fetch theme, if applicable
+      get_url:
+        url: "{{ irssi_theme }}"
+        dest: "{{ irssi_config_dir }}"
+        owner: "{{ irssi_config_owner }}"
+        group: "{{ irssi_config_group }}"
+        mode: 0600
+      when: irssi_theme is defined
+
     - name: Applying irssi configurations
       template:
         src: config.j2
