@@ -75,6 +75,6 @@ settings = {
   };
   "fe-text" = { actlist_sort = "refnum"; };
 {% if irssi_theme is defined %}
-  "fe-common/core" = { theme = "{{ irssi_theme|basename|splitext[0] }}"; };
+  "fe-common/core" = { theme = "{{ irssi_theme|basename|splitext|first }}"; };
 {% endif %}
 };
