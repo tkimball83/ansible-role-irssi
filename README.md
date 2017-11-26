@@ -40,6 +40,10 @@ Available variables are listed below, along with default values:
 
 Additional variables not defined by default:
 
+    irssi_scripts:
+      - name: script.pl
+        base64:
+          {...}
     irssi_theme: http://irssi-import.github.io/themes/initrd.theme
 
 ## Dependencies

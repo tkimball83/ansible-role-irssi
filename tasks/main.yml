@@ -7,13 +7,39 @@
   register: irssi_homebrew
 
 - block:
-    - name: Create configuration directory
+    - name: Creating initial configuration directory
       file:
         path: "{{ irssi_config_dir }}"
         owner: "{{ irssi_config_owner }}"
         group: "{{ irssi_config_group }}"
         state: directory
         mode: 0700
+
+    - name: Creating scripts and autorun directories, if applicable
+      file:
+        path: "{{ item }}"
+        owner: "{{ irssi_config_owner }}"
+        group: "{{ irssi_config_group }}"
+        state: directory
+        mode: 0700
+      register: irssi_scripts_create
+      with_items:
+        - "{{ irssi_config_dir }}/scripts"
+        - "{{ irssi_config_dir }}/scripts/autorun"
+      when: irssi_scripts is defined
+
+    - name: Applying scripts into autorun directory
+      template:
+        src: scripts.j2
+        dest: "{{ irssi_config_dir }}/scripts/autorun/{{ item.name }}"
+        owner: "{{ irssi_config_owner }}"
+        group: "{{ irssi_config_group }}"
+        mode: "{{ irssi_config_mode|default(0600) }}"
+      with_items: "{{ irssi_scripts }}"
+      when:
+        - irssi_scripts_create|success
+        - item.name is defined
+        - item.base64 is defined
 
     - name: Attempting to fetch theme, if applicable
       get_url:
