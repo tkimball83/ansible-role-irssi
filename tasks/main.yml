@@ -1,10 +1,27 @@
 ---
-- name: Ensure that the irssi package is installed
+- name: Ensure that the irssi package is installed (Darwin)
   tags: irssi
   homebrew:
     name: irssi
     state: present
-  register: irssi_homebrew
+  register: irssi_package
+  when: ansible_os_family == 'Darwin'
+
+- name: Ensure that the irssi package is installed (Debian)
+  tags: irssi
+  apt:
+    name: irssi
+    state: present
+  register: irssi_package
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure that the irssi package is installed (RedHat)
+  tags: irssi
+  yum:
+    name: irssi
+    state: present
+  register: irssi_package
+  when: ansible_os_family == 'RedHat'
 
 - block:
     - name: Creating initial configuration directory
@@ -58,5 +75,5 @@
         group: "{{ irssi_config_group }}"
         mode: 0600
   tags: irssi
-  when: irssi_homebrew|success
+  when: irssi_package|success
 ...

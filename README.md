@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/tkimball83/ansible-role-irssi.svg?branch=master)](https://travis-ci.org/tkimball83/ansible-role-irssi)
 
-macOS - Your text mode chatting application since 1999
+Linux/macOS - Your text mode chatting application since 1999
 
 ## Requirements
 
-This role requires Homebrew to be installed
+This role requires homebrew if executed on macOS
 
 ## Role Variables
 

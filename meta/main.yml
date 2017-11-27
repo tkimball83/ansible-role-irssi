@@ -1,17 +1,29 @@
 ---
-dependencies:
-  - geerlingguy.homebrew
 galaxy_info:
   author: tkimball83
-  description: macOS - Your text mode chatting application since 1999
-  license: BSD
+  description: Linux/macOS - Your text mode chatting application since 1999
+  license: GPLv3
   min_ansible_version: 2.4
   platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - all
     - name: MacOSX
       versions:
         - all
+    - name: Ubuntu
+      verisons:
+        - all
   galaxy_tags:
+    - centos
+    - debian
+    - irc
     - irssi
-    - macos
+    - macosx
     - osx
+    - redhat
+    - ubuntu
 ...
