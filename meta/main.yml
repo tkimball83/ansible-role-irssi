@@ -19,11 +19,11 @@ galaxy_info:
         - all
   galaxy_tags:
     - centos
+    - darwin
     - debian
     - irc
     - irssi
     - macosx
-    - osx
     - redhat
     - ubuntu
 ...
