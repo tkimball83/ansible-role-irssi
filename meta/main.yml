@@ -18,12 +18,6 @@ galaxy_info:
       verisons:
         - all
   galaxy_tags:
-    - centos
-    - darwin
-    - debian
     - irc
-    - irssi
-    - macosx
-    - redhat
-    - ubuntu
+    - networking
 ...
