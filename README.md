@@ -42,7 +42,7 @@ Additional variables not defined by default:
 
     irssi_scripts:
       - name: script.pl
-        base64:
+        base64: |
           {...}
     irssi_theme: http://irssi-import.github.io/themes/initrd.theme
 
