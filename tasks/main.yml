@@ -9,6 +9,7 @@
 
 - name: Ensure that the irssi package is installed (Debian)
   tags: irssi
+  become: true
   apt:
     name: irssi
     state: present
@@ -17,6 +18,7 @@
 
 - name: Ensure that the irssi package is installed (RedHat)
   tags: irssi
+  become: true
   yum:
     name: irssi
     state: present
