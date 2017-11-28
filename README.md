@@ -23,6 +23,7 @@ Available variables are listed below, along with default values:
       - exception: False
         level:
           - CTCPS
+          - DCC
         mask:
           - '*'
     irssi_servers:
