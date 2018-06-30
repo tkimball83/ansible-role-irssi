@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 
-{% if irssi_channels is defined and irssi_channels|length > 0 %}
+{% if irssi_channels|length > 0 %}
 channels = (
 {%   for c in irssi_channels|sort %}
 {%     if c.name is defined and c.chatnet is defined %}
@@ -12,7 +12,7 @@ channels = (
 );
 
 {% endif %}
-{% if irssi_chatnets is defined and irssi_chatnets|length > 0%}
+{% if irssi_chatnets|length > 0 %}
 chatnets = {
 {%   for c in irssi_chatnets.keys()|sort %}
 {%     if irssi_chatnets[c].type is defined %}
@@ -35,7 +35,7 @@ chatnets = {
 };
 
 {% endif %}
-{% if irssi_ignores is defined and irssi_ignores|length > 0 %}
+{% if irssi_ignores|length > 0 %}
 ignores = (
 {%   for i in irssi_ignores|sort %}
 {%     if i.level is defined %}
@@ -49,7 +49,7 @@ ignores = (
 );
 
 {% endif %}
-{% if irssi_servers is defined and irssi_servers|length > 0 %}
+{% if irssi_servers|length > 0 %}
 servers = (
 {%   for s in irssi_servers|sort %}
 {%     if s.address is defined and s.chatnet is defined %}
