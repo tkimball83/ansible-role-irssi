@@ -4,7 +4,6 @@
   homebrew:
     name: irssi
     state: present
-  register: irssi_package
   when: ansible_os_family == 'Darwin'
 
 - name: Ensure that the irssi package is installed (Debian)
@@ -13,7 +12,6 @@
   apt:
     name: irssi
     state: present
-  register: irssi_package
   when: ansible_os_family == 'Debian'
 
 - name: Ensure that the irssi package is installed (RedHat)
@@ -22,7 +20,6 @@
   yum:
     name: irssi
     state: present
-  register: irssi_package
   when: ansible_os_family == 'RedHat'
 
 - name: Attempting to overlay irssi initial configuration directory
@@ -33,7 +30,6 @@
     group: "{{ irssi_config_group }}"
     state: directory
     mode: 0700
-  when: irssi_package is success
 
 - name: Attempting to overlay irssi scripts and autorun directories, if applicable
   tags: irssi
@@ -44,12 +40,12 @@
     state: directory
     mode: 0700
   register: irssi_scripts_create
-  with_items:
+  loop:
     - "{{ irssi_config_dir }}/scripts"
     - "{{ irssi_config_dir }}/scripts/autorun"
-  when:
-    - irssi_package is success
-    - irssi_scripts|length > 0
+  loop_control:
+    label: "{{ item }}"
+  when: irssi_scripts|length > 0
 
 - name: Attempting to overlay irssi scripts into the autorun directory, if applicable
   tags: irssi
@@ -59,13 +55,13 @@
     owner: "{{ irssi_config_owner }}"
     group: "{{ irssi_config_group }}"
     mode: "{{ irssi_config_mode|default(0600) }}"
-  with_items: "{{ irssi_scripts }}"
+  loop: "{{ irssi_scripts }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.name is defined
     - item.base64 is defined
-    - irssi_package is success
     - irssi_scripts|length > 0
-    - irssi_scripts_create is success
 
 - name: Attempting to fetch and overlay irssi theme, if applicable
   tags: irssi
@@ -75,9 +71,7 @@
     owner: "{{ irssi_config_owner }}"
     group: "{{ irssi_config_group }}"
     mode: 0600
-  when:
-    - irssi_package is success
-    - irssi_theme|length > 0
+  when: irssi_theme|length > 0
 
 - name: Attempting to overlay irssi configurations
   tags: irssi
@@ -87,5 +81,4 @@
     owner: "{{ irssi_config_owner }}"
     group: "{{ irssi_config_group }}"
     mode: 0600
-  when: irssi_package is success
 ...
